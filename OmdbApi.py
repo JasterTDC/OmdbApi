@@ -1,6 +1,7 @@
-#!usr/bin/python
+#! /usr/bin/Python
 
 # Import library to work with urls.
+import urllib
 from urllib.request import urlopen
 
 # Import json library to parse json files.
@@ -29,7 +30,7 @@ class MoviesApi :
         self.numItems = len (self.results["Search"])
 
     def findFilmById (self, imdbId):
-        # Imdb identifier. 
+        # Imdb identifier.
         self.imdbId = imdbId
 
         # Build the url.
@@ -43,26 +44,14 @@ class MoviesApi :
         # Parse the string as json
         self.ids = json.loads (jsonData)
 
-    # Get results of a query. 
+    # Get results of a query.
     def getResults (self):
         return self.results["Search"]
 
-    # Get the entries number of query. 
+    # Get the entries number of query.
     def getNumItems (self):
         return self.numItems
 
-    # Get all the information about one film. 
+    # Get all the information about one film.
     def getFilm (self):
         return self.ids
-
-movies = MoviesApi()
-movies.findFilmByTitle ("Bakuman")
-
-search = movies.getResults()
-
-for items in search :
-    movies.findFilmById (items["imdbID"])
-
-    print (movies.getFilm())
-
-
