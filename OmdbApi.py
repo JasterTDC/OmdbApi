@@ -28,11 +28,10 @@ class MoviesApi :
         # Parse the string as json.
         self.results = json.loads (jsonData)
 
-        if (self.results["Response"] != "False"):
-            self.numItems = len (self.results["Search"])
-        else:
+        if "Response" in self.results :
             self.numItems = 0
-
+        else:
+            self.numItems = len (self.results["Search"])
 
     def findFilmById (self, imdbId):
         # Imdb identifier.
@@ -51,10 +50,10 @@ class MoviesApi :
 
     # Get results of a query.
     def getResults (self):
-        if (self.results["Response"] != "False"):
-            return self.results["Search"]
+        if "Response" in self.results :
+            return -1
         else:
-            return "False"
+            return self.results["Search"]
 
     # Get the entries number of query.
     def getNumItems (self):

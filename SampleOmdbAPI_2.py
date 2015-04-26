@@ -27,14 +27,17 @@ elif (params > 1):
         # Second we get all movies returned by API.
         moviesList = movies.getResults ()
 
-        for film in moviesList :
-            # Find film by identifier.
-            movies.findFilmById (film["imdbID"])
-            # We get all data about the film
-            omdbFilm = movies.getFilm()
+        # Check if there is a valid films list.
+        if (moviesList != -1):
+            # Extract all the info about the film.             
+            for film in moviesList :
+                # Find film by identifier.
+                movies.findFilmById (film["imdbID"])
+                # We get all data about the film
+                omdbFilm = movies.getFilm()
 
-            # Print all data.
-            print (omdbFilm["Title"] + " - " + omdbFilm["Year"])
-            print ("Director: " + omdbFilm["Director"])
-            print ("Genre: " + omdbFilm["Genre"])
-            print ("")
+                # Print all data.
+                print (omdbFilm["Title"] + " - " + omdbFilm["Year"])
+                print ("Director: " + omdbFilm["Director"])
+                print ("Genre: " + omdbFilm["Genre"])
+                print ("")

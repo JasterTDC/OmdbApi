@@ -29,7 +29,11 @@ elif (params > 1):
         # Second we get all movies returned by API.
         moviesList = movies.getResults ()
 
-        # Print all films/series found
-        for movie in moviesList:
-            print (movie['Title'])
-            print ("")
+        # Check if there's a valid fims list.
+        if (moviesList != -1):
+            # Print all films/series found
+            for movie in moviesList:
+                print (movie['Title'])
+                print ("")
+        else:
+            print ("0 results. ")
